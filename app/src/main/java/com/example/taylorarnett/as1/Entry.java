@@ -7,14 +7,14 @@ import java.util.Date;
  * Created by taylorarnett on 2016-01-21.
  */
 public class Entry {
-    protected Date date;
+    protected String date;
     protected String station;
     protected Float odometer;
     protected String fuelGrade;
     protected Float fuelAmount;
     protected Float unitCost;
 
-    public Entry(Date date, String station, String fuelGrade, Float odometer, Float fuelAmount, Float unitCost) {
+    public Entry(String date, String station, String fuelGrade, Float odometer, Float fuelAmount, Float unitCost) {
         this.date = date;
         this.station = station;
         this.fuelGrade = fuelGrade;
@@ -23,11 +23,16 @@ public class Entry {
         this.unitCost = unitCost;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) throws InvalidEntryException{
+        String str = "-";
+        // contains method found http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+        if ((date.length() != 10) || (!date.contains(str))) {
+            throw new InvalidEntryException();
+        }
         this.date = date;
     }
 
@@ -35,7 +40,10 @@ public class Entry {
         return station;
     }
 
-    public void setStation(String station) {
+    public void setStation(String station) throws InvalidEntryException {
+        if (station.length() == 0){
+            throw new InvalidEntryException();
+        }
         this.station = station;
     }
 
@@ -43,8 +51,15 @@ public class Entry {
         return odometer;
     }
 
-    public void setOdometer(Float odometer) {
-        this.odometer = odometer;
+    public void setOdometer(Float odometer) throws InvalidEntryException{
+        try {
+            this.odometer = odometer;
+        }
+        // catch portion from http://stackoverflow.com/questions/9754103/numberformatexception-error 01-2016-22
+        catch (Exception e) {
+            throw new InvalidEntryException();
+        }
+
     }
 
     public String getFuelGrade() {
@@ -59,15 +74,29 @@ public class Entry {
         return fuelAmount;
     }
 
-    public void setFuelAmount(Float fuelAmount) {
-        this.fuelAmount = fuelAmount;
+    public void setFuelAmount(Float fuelAmount) throws InvalidEntryException{
+        try {
+            this.fuelAmount = fuelAmount;
+        }
+        // catch portion from http://stackoverflow.com/questions/9754103/numberformatexception-error 01-2016-22
+        catch (Exception e) {
+            throw new InvalidEntryException();
+        }
+
     }
 
     public Float getUnitCost() {
         return unitCost;
     }
 
-    public void setUnitCost(Float unitCost) {
-        this.unitCost = unitCost;
+    public void setUnitCost(Float unitCost) throws InvalidEntryException{
+        try {
+            this.unitCost = unitCost;
+        }
+        // catch portion from http://stackoverflow.com/questions/9754103/numberformatexception-error 01-2016-22
+        catch (Exception e) {
+            throw new InvalidEntryException();
+        }
+
     }
 }

@@ -21,12 +21,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
         android:id="@+id/date_text"
-        android:textIsSelectable="true"
         android:editable="true"
-        android:text="YYYY-MM-DD" />
+        android:hint="YYYY-MM-DD" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +37,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/station_text"
         android:layout_gravity="center_horizontal"
-        android:text="eg. Costco" />
+        android:hint="eg. Costco" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,8 +52,7 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/odometer_text"
-        android:layout_gravity="center_horizontal"
-        android:text="in km" />
+        android:hint="in km" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,7 +66,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/fuelGrade_text"
         android:layout_gravity="center_horizontal"
-        android:text="e.g regular" />
+        android:hint="e.g regular" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,7 +82,7 @@
         android:ems="10"
         android:id="@+id/fuelAmount_text"
         android:layout_gravity="center_horizontal"
-        android:text="in Litres" />
+        android:hint="in Litres" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,7 +98,7 @@
         android:ems="10"
         android:id="@+id/fuelUnitCost_text"
         android:layout_gravity="center_horizontal"
-        android:text="cents/L" />
+        android:hint="cents/L" />
 
     <TextView
         android:layout_width="wrap_content"
