@@ -26,7 +26,7 @@ public class AddEntry extends ActionBarActivity {
         EditText edit_fuelGrade = (EditText) findViewById(R.id.fuelGrade_text);
         EditText edit_fuelAmount = (EditText) findViewById(R.id.fuelAmount_text);
         EditText edit_fuelUnitCost = (EditText) findViewById(R.id.fuelUnitCost_text);
-        
+
     }
 
 }
