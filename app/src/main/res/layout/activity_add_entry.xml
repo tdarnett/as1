@@ -24,9 +24,9 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/date_text"
-        android:text="YYYY-MM-DD"
         android:textIsSelectable="true"
-        android:editable="false" />
+        android:editable="true"
+        android:text="YYYY-MM-DD" />
 
     <TextView
         android:layout_width="wrap_content"
