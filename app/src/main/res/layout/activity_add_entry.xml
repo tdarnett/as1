@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/date_text"
+        android:maxLength="10"
         android:editable="true"
         android:hint="YYYY-MM-DD" />
 
@@ -111,7 +112,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="dollars"
+        android:text="$0.00"
         android:id="@+id/fuelCost_view"
         android:layout_gravity="bottom|top" />
 

@@ -27,10 +27,11 @@ public class AddEntry extends ActionBarActivity {
     private ArrayList<Entry> entries = new ArrayList<Entry>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Boolean valid;
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
 
@@ -42,7 +43,7 @@ public class AddEntry extends ActionBarActivity {
         });
         Button saveButton = (Button) findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
-                                          public void onClick (View v){
+            public void onClick(View v) {
                 Boolean valid;
                 valid = verifyFields();
                 if (valid) {
@@ -53,7 +54,6 @@ public class AddEntry extends ActionBarActivity {
                     EditText edit_fuelGrade = (EditText) findViewById(R.id.fuelGrade_text);
                     EditText edit_fuelAmount = (EditText) findViewById(R.id.fuelAmount_text);
                     EditText edit_fuelUnitCost = (EditText) findViewById(R.id.fuelUnitCost_text);
-
                     String date = edit_date.getText().toString();
                     String station = edit_station.getText().toString();
                     String fuelGrade = edit_fuelGrade.getText().toString();
@@ -64,28 +64,38 @@ public class AddEntry extends ActionBarActivity {
                     Entry latestEntry = new Entry(date, station, fuelGrade, odometer, fuelAmount, fuelUnitCost, fuelCost);
                     entries.add(latestEntry);
 
-                    //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
-                    String fuelCost_text = Float.toString(fuelCost);
-                    TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
-                    fuelCost_view.setText("$"+fuelCost_text);
-
-
-
                     //adapter.notifyDataSetChanged(); //this tells adapter to update itself
                     saveInFile();
                     // to return to the home screen
                     Intent intent = new Intent(AddEntry.this, main.class);
                     startActivity(intent);
-
                 }
-
             }
-            }
-
-            );
-        }
+        });
 
 
+        verifyFields();
+
+    }
+
+    public void updatefuelCost() {
+
+        EditText edit_fuelAmount = (EditText) findViewById(R.id.fuelAmount_text);
+        EditText edit_fuelUnitCost = (EditText) findViewById(R.id.fuelUnitCost_text);
+
+        float fuelAmount = Float.valueOf(edit_fuelAmount.getText().toString());
+        float fuelUnitCost = Float.valueOf(edit_fuelUnitCost.getText().toString());
+        float fuelCost = fuelAmount * fuelUnitCost;
+
+        //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
+        //String fuelCost_text = Float.toString(fuelCost);
+        String fuelCost_text= String.format("%.2f", fuelCost);
+
+        TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
+        fuelCost_view.setText("$"+fuelCost_text);
+        setResult(RESULT_OK);
+
+    }
 // this verifies that the fields are valid then saves them
 
     public boolean verifyFields (){
@@ -115,6 +125,58 @@ public class AddEntry extends ActionBarActivity {
             validFields = false;
 
         }
+        // Text Watcher info from http://stackoverflow.com/questions/20824634/android-on-text-change-listener 01-2016-24
+        edit_fuelUnitCost.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    updatefuelCost();
+                } catch (Exception e) {
+                    //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
+                    //String fuelCost_text = Float.toString(0);
+                    String fuelCost_text = "$0.00";
+                    TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
+                    fuelCost_view.setText(fuelCost_text);
+                    setResult(RESULT_OK);
+
+                }
+            }
+        });
+        edit_fuelAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    updatefuelCost();
+                } catch (Exception e) {
+                    //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
+                    //String fuelCost_text = Float.toString(0);
+                    String fuelCost_text = "$0.00";
+                    TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
+                    fuelCost_view.setText(fuelCost_text);
+                    setResult(RESULT_OK);
+                }
+            }
+        });
         return validFields;
     }
 
