@@ -14,12 +14,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class AddEntry extends ActionBarActivity {
@@ -31,7 +36,7 @@ public class AddEntry extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Boolean valid;
+        loadFromFile();
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
 
@@ -89,16 +94,16 @@ public class AddEntry extends ActionBarActivity {
 
         //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
         //String fuelCost_text = Float.toString(fuelCost);
-        String fuelCost_text= String.format("%.2f", fuelCost);
+        String fuelCost_text = String.format("%.2f", fuelCost);
 
-        TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
-        fuelCost_view.setText("$"+fuelCost_text);
+        TextView fuelCost_view = (TextView) findViewById(R.id.fuelCost_view);
+        fuelCost_view.setText("$" + fuelCost_text);
         setResult(RESULT_OK);
 
     }
 // this verifies that the fields are valid then saves them
 
-    public boolean verifyFields (){
+    public boolean verifyFields() {
         Boolean validFields = false;
         String date = "";
         String station = "";
@@ -145,7 +150,7 @@ public class AddEntry extends ActionBarActivity {
                     //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
                     //String fuelCost_text = Float.toString(0);
                     String fuelCost_text = "$0.00";
-                    TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
+                    TextView fuelCost_view = (TextView) findViewById(R.id.fuelCost_view);
                     fuelCost_view.setText(fuelCost_text);
                     setResult(RESULT_OK);
 
@@ -171,7 +176,7 @@ public class AddEntry extends ActionBarActivity {
                     //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
                     //String fuelCost_text = Float.toString(0);
                     String fuelCost_text = "$0.00";
-                    TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
+                    TextView fuelCost_view = (TextView) findViewById(R.id.fuelCost_view);
                     fuelCost_view.setText(fuelCost_text);
                     setResult(RESULT_OK);
                 }
@@ -180,7 +185,7 @@ public class AddEntry extends ActionBarActivity {
         return validFields;
     }
 
-
+    // from lonelyTwitter application
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME,
@@ -200,5 +205,24 @@ public class AddEntry extends ActionBarActivity {
             throw new RuntimeException();
         }
     }
+// from lonelyTwitter application
+    private void loadFromFile() {
+        entries = new ArrayList<Entry>();
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+            // Took from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html 01-2016-19
+            Type listType = new TypeToken<ArrayList<Entry>>() {}.getType();
+            entries = gson.fromJson(in, listType);
 
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            entries = new ArrayList<Entry>();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
+
+    }
 }
