@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -24,60 +27,98 @@ public class AddEntry extends ActionBarActivity {
     private ArrayList<Entry> entries = new ArrayList<Entry>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Button saveButton = (Button) findViewById(R.id.saveButton);
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                saveFields(v);
-                //Intent intent = new Intent("com.example.taylorarnett.as1.main");
-                //startActivity(intent);
+                // to return to the home screen
+                Intent intent = new Intent(AddEntry.this, main.class);
+                startActivity(intent);
             }
         });
-    }
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+                                          public void onClick (View v){
+                Boolean valid;
+                valid = verifyFields();
+                if (valid) {
+                    setResult(RESULT_OK);
+                    EditText edit_date = (EditText) findViewById(R.id.date_text);
+                    EditText edit_station = (EditText) findViewById(R.id.station_text);
+                    EditText edit_odometer = (EditText) findViewById(R.id.odometer_text);
+                    EditText edit_fuelGrade = (EditText) findViewById(R.id.fuelGrade_text);
+                    EditText edit_fuelAmount = (EditText) findViewById(R.id.fuelAmount_text);
+                    EditText edit_fuelUnitCost = (EditText) findViewById(R.id.fuelUnitCost_text);
 
-    public void saveFields (View view) throws InvalidEntryException{
-        Boolean goodInput = false;
+                    String date = edit_date.getText().toString();
+                    String station = edit_station.getText().toString();
+                    String fuelGrade = edit_fuelGrade.getText().toString();
+                    float odometer = Float.valueOf(edit_odometer.getText().toString());
+                    float fuelAmount = Float.valueOf(edit_fuelAmount.getText().toString());
+                    float fuelUnitCost = Float.valueOf(edit_fuelUnitCost.getText().toString());
+                    float fuelCost = fuelAmount * fuelUnitCost;
+                    Entry latestEntry = new Entry(date, station, fuelGrade, odometer, fuelAmount, fuelUnitCost, fuelCost);
+                    entries.add(latestEntry);
+
+                    //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
+                    String fuelCost_text = Float.toString(fuelCost);
+                    TextView fuelCost_view = (TextView)findViewById(R.id.fuelCost_view);
+                    fuelCost_view.setText("$"+fuelCost_text);
+
+
+
+                    //adapter.notifyDataSetChanged(); //this tells adapter to update itself
+                    saveInFile();
+                    // to return to the home screen
+                    Intent intent = new Intent(AddEntry.this, main.class);
+                    startActivity(intent);
+
+                }
+
+            }
+            }
+
+            );
+        }
+
+
+// this verifies that the fields are valid then saves them
+
+    public boolean verifyFields (){
+        Boolean validFields = false;
+        String date = "";
+        String station = "";
+        String fuelGrade = "";
+        float odometer = -1;
+        float fuelAmount = -1;
+        float fuelUnitCost = -1;
+
         EditText edit_date = (EditText) findViewById(R.id.date_text);
         EditText edit_station = (EditText) findViewById(R.id.station_text);
         EditText edit_odometer = (EditText) findViewById(R.id.odometer_text);
         EditText edit_fuelGrade = (EditText) findViewById(R.id.fuelGrade_text);
         EditText edit_fuelAmount = (EditText) findViewById(R.id.fuelAmount_text);
         EditText edit_fuelUnitCost = (EditText) findViewById(R.id.fuelUnitCost_text);
-        setResult(RESULT_OK);
+        try {
+            date = edit_date.getText().toString();
+            station = edit_station.getText().toString();
+            fuelGrade = edit_fuelGrade.getText().toString();
+            odometer = Float.valueOf(edit_odometer.getText().toString());
+            fuelAmount = Float.valueOf(edit_fuelAmount.getText().toString());
+            fuelUnitCost = Float.valueOf(edit_fuelUnitCost.getText().toString());
+            validFields = true;
+        } catch (Exception e) {
+            validFields = false;
 
-        String date = edit_date.getText().toString();
-        String station = edit_station.getText().toString();
-        String fuelGrade = edit_fuelGrade.getText().toString();
-        //String odometer = edit_odometer.getText().toString();
-        //String fuel
-        // conversion to float found from http://stackoverflow.com/questions/4229710/string-from-edittext-to-float 01-2016-22
-        while (!goodInput) {
-            try {
-                float odometer = Float.valueOf(edit_odometer.getText().toString());
-                float fuelAmount = Float.valueOf(edit_fuelAmount.getText().toString());
-                float fuelUnitCost = Float.valueOf(edit_fuelUnitCost.getText().toString());
-                goodInput = true;
-            } catch (Exception e) {
-                throw new InvalidEntryException();
-                float odometer = -1;
-                float fuelAmount = -1;
-                float fuelUnitCost = -1;
-            }
         }
-        
-        Entry latestEntry = new Entry(date, station, fuelGrade, odometer, fuelAmount, fuelUnitCost);
-        entries.add(latestEntry);
-        //tweets.add(latestTweet);	//now we are just adding the latest tweet to the list of tweets
-        //adapter.notifyDataSetChanged(); //this tells adapter to update itself
-        saveInFile();
-        //finish();
-
+        return validFields;
     }
+
+
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME,

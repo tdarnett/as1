@@ -13,14 +13,16 @@ public class Entry {
     protected String fuelGrade;
     protected Float fuelAmount;
     protected Float unitCost;
+    protected Float fuelCost;
 
-    public Entry(String date, String station, String fuelGrade, Float odometer, Float fuelAmount, Float unitCost) {
+    public Entry(String date, String station, String fuelGrade, Float odometer, Float fuelAmount, Float unitCost, Float fuelCost) {
         this.date = date;
         this.station = station;
         this.fuelGrade = fuelGrade;
         this.odometer = odometer;
         this.fuelAmount = fuelAmount;
         this.unitCost = unitCost;
+        this.fuelCost = fuelCost;
     }
 
     public String getDate() {
@@ -98,5 +100,13 @@ public class Entry {
             throw new InvalidEntryException();
         }
 
+    }
+
+    public Float getFuelCost() {
+        return fuelCost;
+    }
+
+    public void setFuelCost(Float fuelCost) {
+        this.fuelCost = fuelCost;
     }
 }

@@ -11,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -79,10 +82,10 @@ public class main extends ActionBarActivity {
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-            //Gson gson = new Gson();
+            Gson gson = new Gson();
             // Took from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html 01-2016-19
-           // Type listType = new TypeToken<ArrayList<Entry>>() {}.getType();
-            //entries = gson.fromJson(in, listType);
+            Type listType = new TypeToken<ArrayList<Entry>>() {}.getType();
+            entries = gson.fromJson(in, listType);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
