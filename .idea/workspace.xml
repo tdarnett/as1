@@ -15,11 +15,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/AddEntry.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/AddEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/Entry.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/Entry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_list_entries.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_list_entries.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/main.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="as1.iws" />
@@ -48,10 +43,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16483517">
+            <state vertical-scroll-proportion="0.0">
               <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
               <folding>
                 <element signature="e#878#885#0" expanded="true" />
@@ -109,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddEntry.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AddEntry.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/AddEntry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.4642857">
+              <caret line="94" column="55" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -1685,10 +1680,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/InvalidEntryException.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_entry.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_list_entries.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/AddEntry.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/Entry.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/main.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/AddEntry.java" />
       </list>
     </option>
   </component>
@@ -2507,25 +2502,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/Entry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="52" selection-start-line="114" selection-start-column="52" selection-end-line="114" selection-end-column="52" />
-          <folding>
-            <element signature="e#2921#2922#0" expanded="true" />
-            <element signature="e#2961#2962#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/AddEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2547,11 +2523,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16483517">
+        <state vertical-scroll-proportion="0.0">
           <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
           <folding>
             <element signature="e#878#885#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/Entry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="114" column="52" selection-start-line="114" selection-start-column="52" selection-end-line="114" selection-end-column="52" />
+          <folding>
+            <element signature="e#2921#2922#0" expanded="true" />
+            <element signature="e#2961#2962#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/taylorarnett/as1/AddEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4642857">
+          <caret line="94" column="55" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

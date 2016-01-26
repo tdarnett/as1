@@ -90,7 +90,7 @@ public class AddEntry extends ActionBarActivity {
 
         float fuelAmount = Float.valueOf(edit_fuelAmount.getText().toString());
         float fuelUnitCost = Float.valueOf(edit_fuelUnitCost.getText().toString());
-        float fuelCost = fuelAmount * fuelUnitCost;
+        float fuelCost = fuelAmount * (fuelUnitCost/100);
 
         //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
         //String fuelCost_text = Float.toString(fuelCost);
