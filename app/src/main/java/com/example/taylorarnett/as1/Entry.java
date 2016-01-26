@@ -1,7 +1,6 @@
 package com.example.taylorarnett.as1;
 
 
-import java.util.Date;
 
 /**
  * Created by taylorarnett on 2016-01-21.
@@ -108,5 +107,16 @@ public class Entry {
 
     public void setFuelCost(Float fuelCost) {
         this.fuelCost = fuelCost;
+    }
+
+    @Override
+    public String toString() {
+        // for correct output
+        String odometer_out = String.format("%.1f", odometer);
+        String fuelAmount_out = String.format("%.3f",fuelAmount);
+        String fuelUnitCost_out = String.format("%.1f", unitCost);
+        String fuelCost_out = String.format("%.2f", fuelCost);
+        return date + " | "+ station+ " | " + odometer_out + "km | " + fuelGrade
+                + " | " + fuelAmount_out + "L | " + fuelUnitCost_out + " cents/L | $" + fuelCost_out;
     }
 }

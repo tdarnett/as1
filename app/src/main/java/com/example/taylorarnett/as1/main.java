@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -56,11 +57,23 @@ public class main extends ActionBarActivity {
         // TODO Auto-generated method stub
         super.onStart();
         loadFromFile();
-
         adapter = new ArrayAdapter<Entry>(this,
-                R.layout.activity_list_entries, entries);
+                R.layout.activity_list_entries,entries);
         oldEntriesList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        // to output statistics
+        Entry entry;
+        float fuelCostSum = 0;
+        for (int i = 0; i < entries.size();i++ ){
+            entry = entries.get(i);
+            fuelCostSum = fuelCostSum + entry.getFuelCost();
+        }
+        TextView statistics_view = (TextView) findViewById(R.id.statistics);
+        String fuelCostSum_text = String.format("%.2f", fuelCostSum);
+        statistics_view.setText("Total Fuel Cost: $" + fuelCostSum_text);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

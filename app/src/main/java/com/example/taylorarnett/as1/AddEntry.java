@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -28,7 +29,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class AddEntry extends ActionBarActivity {
-    private static final String FILENAME = "file.txt";
+    private static final String FILENAME = "file.sav";
     private ArrayList<Entry> entries = new ArrayList<Entry>();
 
     @Override
@@ -69,7 +70,6 @@ public class AddEntry extends ActionBarActivity {
                     Entry latestEntry = new Entry(date, station, fuelGrade, odometer, fuelAmount, fuelUnitCost, fuelCost);
                     entries.add(latestEntry);
 
-                    //adapter.notifyDataSetChanged(); //this tells adapter to update itself
                     saveInFile();
                     // to return to the home screen
                     Intent intent = new Intent(AddEntry.this, main.class);

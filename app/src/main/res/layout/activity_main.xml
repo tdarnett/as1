@@ -12,7 +12,10 @@
         android:id="@+id/statistics"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/abc_action_bar_default_height"
-        android:text="Statistics" />
+        android:text="Total Fuel Cost: $0.00"
+        android:textSize="20dp"
+        android:singleLine="true"
+        android:textAlignment="center" />
 
     <ListView
         android:id="@+id/oldEntriesList"
