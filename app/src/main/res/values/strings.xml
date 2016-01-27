@@ -6,4 +6,5 @@
     <string name="title_activity_view_entries">ViewEntries</string>
     <string name="title_activity_add_entry">AddEntry</string>
     <string name="title_activity_list_entries">listEntries</string>
+    <string name="title_activity_edit_entry">EditEntry</string>
 </resources>

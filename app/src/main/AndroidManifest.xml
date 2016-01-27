@@ -23,6 +23,17 @@
             android:parentActivityName=".main">
             <intent-filter>
                 <action android:name="com.example.taylorarnett.as1.AddEntry" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EditEntry"
+            android:label="@string/title_activity_edit_entry"
+            android:parentActivityName=".main">
+            <intent-filter>
+                <action android:name="com.example.taylorarnett.as1.EditEntry" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

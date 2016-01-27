@@ -2,11 +2,11 @@ package com.example.taylorarnett.as1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.DropBoxManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -44,6 +44,7 @@ public class main extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -72,6 +73,18 @@ public class main extends ActionBarActivity {
         TextView statistics_view = (TextView) findViewById(R.id.statistics);
         String fuelCostSum_text = String.format("%.2f", fuelCostSum);
         statistics_view.setText("Total Fuel Cost: $" + fuelCostSum_text);
+
+        //http://stackoverflow.com/questions/2468100/android-listview-click-howto
+        oldEntriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent("com.example.taylorarnett.as1.EditEntry");
+                String index = String.valueOf(position);
+                // http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
+                intent.putExtra("index", index);
+                startActivity(intent);
+            }
+        });
     }
 
 
