@@ -71,7 +71,7 @@ public class EditEntry extends ActionBarActivity {
                     float fuelCost = fuelAmount * (fuelUnitCost / 100);
                     Entry latestEntry = new Entry(date, station, fuelGrade, odometer, fuelAmount, fuelUnitCost, fuelCost);
                     entries.remove(index_r);
-                    entries.add(latestEntry);
+                    entries.add(index_r,latestEntry);
 
 
                     saveInFile();
