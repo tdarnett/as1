@@ -40,7 +40,7 @@ public class main extends ActionBarActivity {
         oldEntriesList = (ListView) findViewById(R.id.oldEntriesList);
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent("com.example.taylorarnett.as1.AddEntry");
+                Intent intent = new Intent(main.this, AddEntry.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +78,7 @@ public class main extends ActionBarActivity {
         oldEntriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent("com.example.taylorarnett.as1.EditEntry");
+                Intent intent = new Intent(main.this, EditEntry.class);
                 String index = String.valueOf(position);
                 // http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
                 intent.putExtra("index", index);
