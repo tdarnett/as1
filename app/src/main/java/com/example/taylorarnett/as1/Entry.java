@@ -24,6 +24,16 @@ public class Entry {
         this.fuelCost = fuelCost;
     }
 
+    public Entry(String date, String station, String fuelGrade, Float odometer, Float fuelAmount, Float unitCost) {
+        this.date = date;
+        this.station = station;
+        this.fuelGrade = fuelGrade;
+        this.odometer = odometer;
+        this.fuelAmount = fuelAmount;
+        this.unitCost = unitCost;
+        this.fuelCost = fuelAmount * (unitCost/100);
+    }
+
     public String getDate() {
         return date;
     }
