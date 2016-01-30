@@ -28,6 +28,7 @@ public class main extends ActionBarActivity {
     private static final String FILENAME = "file.sav";
     private ListView oldEntriesList;
     private ArrayList<Entry> entries = new ArrayList<Entry>(); //this creates a list of entries
+    // inspired by lonelyTwitter code
     private ArrayAdapter<Entry> adapter;
 
 
@@ -36,6 +37,7 @@ public class main extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // When user clicks "Add New Entry"
         Button addButton = (Button) findViewById(R.id.new_entry);
         oldEntriesList = (ListView) findViewById(R.id.oldEntriesList);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -55,15 +57,15 @@ public class main extends ActionBarActivity {
     }
     @Override
     protected void onStart() {
-        // TODO Auto-generated method stub
         super.onStart();
+        // next few lines inspired by lonelyTwitter code
         loadFromFile();
         adapter = new ArrayAdapter<Entry>(this,
                 R.layout.activity_list_entries,entries);
         oldEntriesList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        // to output statistics
+        // to output statistics from all entries in file.
         Entry entry;
         float fuelCostSum = 0;
         for (int i = 0; i < entries.size();i++ ){
@@ -74,7 +76,12 @@ public class main extends ActionBarActivity {
         String fuelCostSum_text = String.format("%.2f", fuelCostSum);
         statistics_view.setText("Total Fuel Cost: $" + fuelCostSum_text);
 
-        //http://stackoverflow.com/questions/2468100/android-listview-click-howto
+        /*
+            http://stackoverflow.com/questions/2468100/android-listview-click-howto
+            If user clicks on an entry in the listview, the index of the entry clicked is
+            passed onto the EditEntry activity, so editing can be done on the correct entry.
+         */
+
         oldEntriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,6 +109,11 @@ public class main extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /*
+        loads the data from the file. This code is slightly modified from the lonelyTwitter
+        loadfromFile().
+     */
 
     private void loadFromFile() {
         entries = new ArrayList<Entry>();

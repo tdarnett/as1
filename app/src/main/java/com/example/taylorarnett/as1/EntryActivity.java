@@ -24,11 +24,24 @@ import java.util.ArrayList;
 /**
  * Created by taylorarnett on 2016-01-28.
  */
+
+/*
+    EntryActivity contains all the methods in which both AddEntry and EditEntry inherit from.
+ */
 public class EntryActivity extends ActionBarActivity {
     public static final String FILENAME = "file.sav";
     public ArrayList<Entry> entries = new ArrayList<Entry>();
 
-    // this verifies that the fields are valid then saves them
+    /*
+        verifyFields is used to check if the user input is complete and appropriate.
+        It does this by using a try/catch block in case there are any errors when
+        converting the user input strings into their respective data types.
+        If every entry is valid then the method return true, otherwise it returns false.
+
+        The other important part of this method is that it tracks when the user is finished
+        entering input in the fuel amount, and fuel unit cost fields. It does this by using
+        TextWatcher. This is used so the fuel cost can be dynamically calculated.
+     */
     public boolean verifyFields() {
         Boolean validFields = false;
         String date = "";
@@ -68,8 +81,8 @@ public class EntryActivity extends ActionBarActivity {
                 try {
                     updatefuelCost();
                 } catch (Exception e) {
+                    // Otherwise the input is not complete and we must output $0.00
                     //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
-                    //String fuelCost_text = Float.toString(0);
                     String fuelCost_text = "$0.00";
                     TextView fuelCost_view = (TextView) findViewById(R.id.fuelCost_view);
                     fuelCost_view.setText(fuelCost_text);
@@ -89,8 +102,9 @@ public class EntryActivity extends ActionBarActivity {
                 try {
                     updatefuelCost();
                 } catch (Exception e) {
+                    // Otherwise the input is not complete and we must output $0.00
                     //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
-                    //String fuelCost_text = Float.toString(0);
+                    //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
                     String fuelCost_text = "$0.00";
                     TextView fuelCost_view = (TextView) findViewById(R.id.fuelCost_view);
                     fuelCost_view.setText(fuelCost_text);
@@ -101,6 +115,11 @@ public class EntryActivity extends ActionBarActivity {
         return validFields;
     }
 
+    /*
+        updatefuelCost is called when the user has entered in the fields for fuel amount and fuel
+        unit cost. It simply takes the input of these two fields and uses them to calculate and
+        output the fuel cost.
+     */
     public void updatefuelCost() {
 
         EditText edit_fuelAmount = (EditText) findViewById(R.id.fuelAmount_text);
@@ -111,7 +130,6 @@ public class EntryActivity extends ActionBarActivity {
         float fuelCost = fuelAmount * (fuelUnitCost / 100);
 
         //display fuelCost from http://stackoverflow.com/questions/5402637/displays-float-into-text-view 01-2016-24
-        //String fuelCost_text = Float.toString(fuelCost);
         String fuelCost_text = String.format("%.2f", fuelCost);
 
         TextView fuelCost_view = (TextView) findViewById(R.id.fuelCost_view);
