@@ -1,11 +1,9 @@
-# From https://github.com/github/gitignore/blob/master/Android.gitignore 2014-01-14
+# From https://github.com/tdarnett/lonelyTwitter/blob/master/.gitignore with some modifications
 
 workspace.xml
 misc.xml
+*~
 
-# built application files
-*.apk
-*.ap_
 
 # files for the dex VM
 *.dex
