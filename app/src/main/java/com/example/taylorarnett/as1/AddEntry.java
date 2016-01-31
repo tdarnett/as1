@@ -12,7 +12,6 @@ import android.widget.EditText;
     - loadFromFile()
     - saveInFile()
     - verifyFields()
-    - updatefuelCost()
 
     The main difference from EditEntry, is the absence of the delete functionality, and the
     saveButton appends the entry to the entries list.

@@ -14,7 +14,6 @@ import android.widget.TextView;
     - loadFromFile()
     - saveInFile()
     - verifyFields()
-    - updatefuelCost()
 
     The main difference from AddEntry, is that it includes a delete option - which removes
     the entry chosen from the main screen. Also, the save button replaces the original entry
